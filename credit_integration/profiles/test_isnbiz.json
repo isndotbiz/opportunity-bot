@@ -1,0 +1,19 @@
+{
+  "business_name": "ISNBIZ, INCORPORATED",
+  "business_type": "C-Corporation",
+  "equifax_id": "722429197",
+  "years_in_business": 11,
+  "credit_score": 372,
+  "payment_index": 100,
+  "total_credit_limit": 137,
+  "total_balance": 137,
+  "available_credit": 0,
+  "current_accounts": 2,
+  "delinquent_accounts": 0,
+  "total_tradelines": 2,
+  "bankruptcies": 0,
+  "judgments": 0,
+  "liens": 0,
+  "risk_profile": "conservative",
+  "max_investment_recommendation": 100
+}

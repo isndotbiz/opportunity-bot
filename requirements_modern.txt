@@ -1,0 +1,45 @@
+# Modern Opportunity Research Bot Requirements
+# Python 3.11+ recommended
+
+# Core dependencies
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# Pydantic for data validation
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Crawl4AI for modern web scraping
+crawl4ai[all]>=0.3.0
+# Note: crawl4ai[all] includes:
+# - playwright
+# - beautifulsoup4
+# - lxml
+# - aiohttp
+
+# Alternative: install separately if crawl4ai[all] has issues
+# playwright>=1.40.0
+# beautifulsoup4>=4.12.0
+# lxml>=4.9.0
+# aiohttp>=3.9.0
+
+# Reddit API
+praw>=7.7.0
+
+# Vector database for RAG
+chromadb>=0.4.0
+
+# Optional: Sentence transformers for embeddings
+sentence-transformers>=2.3.0
+
+# Optional: Enhanced scheduling
+schedule>=1.2.0
+
+# Development dependencies (optional)
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+black>=23.12.0
+ruff>=0.1.0
+
+# Logging and monitoring
+structlog>=23.2.0

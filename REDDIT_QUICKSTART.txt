@@ -1,0 +1,168 @@
+╔═══════════════════════════════════════════════════════════════╗
+║        REDDIT API CONFIGURATION - QUICK START GUIDE             ║
+║           Opportunity Bot - Production Deployment              ║
+╚═══════════════════════════════════════════════════════════════╝
+
+FASTEST PATH (5 minutes):
+========================
+
+1. Get Reddit API Credentials:
+   Go to: https://www.reddit.com/prefs/apps
+   - Click "Create an application"
+   - Name: OpportunityBot
+   - Type: script
+   - Copy: Client ID and Client Secret
+
+2. Configure Bot (Interactive):
+   bash configure_reddit.sh
+
+   This will:
+   - Check 1Password for existing credentials
+   - Prompt for manual entry if needed
+   - Create .env file with secure permissions
+   - Test the API connection
+
+3. Verify Configuration:
+   python3 test_reddit_connection.py
+
+4. Run the Bot:
+   python3 production_opportunity_pipeline.py
+
+═══════════════════════════════════════════════════════════════
+
+MANUAL SETUP (if scripts don't work):
+====================================
+
+1. Create .env file:
+   cat > .env << 'EOF'
+   REDDIT_CLIENT_ID=your_id_here
+   REDDIT_CLIENT_SECRET=your_secret_here
+   REDDIT_USER_AGENT=OpportunityBot/1.0 (+http://localhost:8080)
+   GOOGLE_API_KEY=
+   GOOGLE_CSE_ID=
+   EOF
+
+2. Secure it:
+   chmod 600 .env
+
+3. Test it:
+   python3 test_reddit_connection.py
+
+═══════════════════════════════════════════════════════════════
+
+SAVE TO 1PASSWORD (Optional but Recommended):
+=============================================
+
+1. Open 1Password
+2. Create new Login item:
+   - Title: Reddit API
+   - Website: https://reddit.com/prefs/apps
+   - Custom field: reddit_client_id = YOUR_ID
+   - Password: YOUR_SECRET
+
+Or use CLI:
+   op item create --category login --title "Reddit API" \
+     --vault "Onion" \
+     --url "https://reddit.com/prefs/apps" \
+     reddit_client_id="YOUR_ID" \
+     reddit_client_secret="YOUR_SECRET"
+
+═══════════════════════════════════════════════════════════════
+
+TROUBLESHOOTING:
+================
+
+Problem: "PRAW not found"
+Solution: pip install -r requirements.txt
+
+Problem: "Invalid credentials"
+Solution: Verify credentials at https://www.reddit.com/prefs/apps
+
+Problem: "403 Forbidden"
+Solution: Your app was revoked. Create a new one at:
+          https://www.reddit.com/prefs/apps
+
+Problem: "404 Not Found" or "Cannot access subreddit"
+Solution: Add rate limiting. The bot already does this.
+
+═══════════════════════════════════════════════════════════════
+
+FILES YOU'LL USE:
+=================
+
+/mnt/d/workspace/opportunity-research-bot/.env
+  └─ Your credentials (KEEP SECRET! .gitignore protects it)
+
+/mnt/d/workspace/opportunity-research-bot/configure_reddit.sh
+  └─ Interactive setup (handles 1Password + .env creation)
+
+/mnt/d/workspace/opportunity-research-bot/test_reddit_connection.py
+  └─ Verify everything works
+
+/mnt/d/workspace/opportunity-research-bot/REDDIT_API_SETUP.md
+  └─ Detailed documentation
+
+═══════════════════════════════════════════════════════════════
+
+REDDIT API LIMITS:
+==================
+
+- 60 requests/minute (authenticated or read-only)
+- 30 requests/minute (recommended for safety)
+
+The bot includes:
+  - 1-2 second delays between requests
+  - Conservative rate limits in config.py
+  - Exponential backoff for rate limit errors
+
+═══════════════════════════════════════════════════════════════
+
+WHAT GETS SCRAPED:
+===================
+
+Subreddits:
+  - r/SideProject
+  - r/EntrepreneurRideAlong
+  - r/Entrepreneur
+  - r/SweatyStartup
+  - r/SaaS
+  - r/IMadeThis
+  - r/roasting
+
+Search Queries:
+  - "made $ revenue"
+  - "earning $ per month"
+  - "MRR revenue"
+  - "passive income"
+  - "automated business"
+  - "AI side project revenue"
+
+═══════════════════════════════════════════════════════════════
+
+SECURITY CHECKLIST:
+===================
+
+✓ .env file has 600 permissions (chmod 600 .env)
+✓ .env is in .gitignore (never commit credentials)
+✓ Credentials stored in 1Password for backup
+✓ Using OAuth2 (no username/password stored)
+✓ User agent is set (required by Reddit)
+✓ Rate limiting implemented
+✓ API calls are read-only (safer than write access)
+
+═══════════════════════════════════════════════════════════════
+
+NEXT STEPS:
+===========
+
+1. Run: bash configure_reddit.sh
+2. Run: python3 test_reddit_connection.py
+3. Run: python3 production_opportunity_pipeline.py
+4. Check: /mnt/d/workspace/opportunity-research-bot/data/
+
+═══════════════════════════════════════════════════════════════
+
+For detailed documentation, see:
+  /mnt/d/workspace/opportunity-research-bot/REDDIT_API_SETUP.md
+
+═══════════════════════════════════════════════════════════════

@@ -1,0 +1,15 @@
+# Core dependencies
+requests>=2.31.0
+chromadb>=0.4.0
+
+# Scraping dependencies
+praw>=7.7.0              # Reddit API
+beautifulsoup4>=4.12.0   # HTML parsing
+lxml>=4.9.0              # Fast HTML parser
+
+# Optional: Enhanced functionality
+python-dotenv>=1.0.0     # Load .env files
+schedule>=1.2.0          # Cron-like scheduling
+
+# Utility
+# pathlib>=1.0.0  # Built-in for Python 3.4+, causes conflicts in 3.12
