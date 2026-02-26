@@ -11,6 +11,12 @@ ENV/
 # Environment
 .env
 .env.local
+.env.production
+
+# Templates are safe to commit
+!.env.tpl
+!.env.example
+!.env.template
 *.key
 
 # Data & Databases
@@ -35,3 +41,12 @@ scrapers/cache/
 # OS
 .DS_Store
 Thumbs.db
+\.env.fal.template
+1password_import/
+
+# Serena (session-local)
+.serena/cache/
+.serena/memories/
+
+# Local tool config (machine-specific)
+.mcp.json
