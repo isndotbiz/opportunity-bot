@@ -6,6 +6,13 @@ Add your API keys and settings here
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Load .env file from project root
+_config_dir = Path(__file__).parent.parent
+_env_file = _config_dir / ".env"
+if _env_file.exists():
+    load_dotenv(_env_file)
 
 # API Keys (set via environment variables or .env file)
 REDDIT_CLIENT_ID = os.getenv("REDDIT_CLIENT_ID", "")

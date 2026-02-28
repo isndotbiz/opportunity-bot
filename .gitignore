@@ -50,3 +50,13 @@ Thumbs.db
 
 # Local tool config (machine-specific)
 .mcp.json
+ 
+# ChromaDB binary data 
+data/chroma_db/ 
+data/test_chroma/ 
+ 
+# Editor/tool configs 
+.cursor/ 
+.dedupe_backups/ 
+.opencode/ 
+opencode.json

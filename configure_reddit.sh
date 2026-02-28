@@ -208,7 +208,7 @@ import os
 import sys
 
 # Add the script directory to Python path
-sys.path.insert(0, '/mnt/d/workspace/opportunity-research-bot')
+sys.path.insert(0, '/home/jdmal/workspace/opportunity-research-bot')
 
 try:
     from dotenv import load_dotenv
@@ -246,7 +246,7 @@ import os
 import sys
 
 # Add the script directory to Python path
-sys.path.insert(0, '/mnt/d/workspace/opportunity-research-bot')
+sys.path.insert(0, '/home/jdmal/workspace/opportunity-research-bot')
 
 try:
     from dotenv import load_dotenv
@@ -296,7 +296,7 @@ python3 << PYTHON_TEST 2>&1 || true
 import os
 import sys
 
-sys.path.insert(0, '/mnt/d/workspace/opportunity-research-bot')
+sys.path.insert(0, '/home/jdmal/workspace/opportunity-research-bot')
 
 try:
     from dotenv import load_dotenv

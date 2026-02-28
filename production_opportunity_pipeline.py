@@ -20,6 +20,9 @@ try:
     from scrapers.reddit_scraper import RedditScraper
     from scrapers.indiehackers_scraper import IndieHackersScraper
     from scrapers.google_dorking import GoogleDorkingScraper
+    from scrapers.producthunt_scraper import ProductHuntScraper
+    from scrapers.hackernews_scraper import HackerNewsScraper
+    from config_chromadb import get_chroma_client, get_chroma_settings
 except ImportError as e:
     print(f"❌ Import error: {e}")
     print("   Make sure scrapers/ directory exists with all modules")
@@ -28,7 +31,7 @@ except ImportError as e:
 # Configuration
 WORKSPACE = Path(__file__).parent.absolute()  # opportunity-research-bot directory
 LLAMA_SERVER = "http://localhost:8080"
-RAG_BUSINESS_DB = WORKSPACE / "data" / "chroma_db"
+RAG_BUSINESS_DB = WORKSPACE / "data" / "chroma_db"  # Kept for backward compatibility
 
 
 class ProductionOpportunityPipeline:
@@ -60,18 +63,25 @@ class ProductionOpportunityPipeline:
 
         all_opportunities = []
 
-        # Reddit scraping
+        # Product Hunt scraping
         try:
-            reddit_scraper = RedditScraper()
-            reddit_opps = reddit_scraper.scrape_all()
-            all_opportunities.extend(reddit_opps)
-            print(f"✅ Reddit: {len(reddit_opps)} opportunities")
-        except ValueError as e:
-            print(f"⚠️  Reddit scraping skipped: {e}")
+            ph_scraper = ProductHuntScraper()
+            ph_opps = ph_scraper.scrape_all()
+            all_opportunities.extend(ph_opps)
+            print(f"✅ Product Hunt: {len(ph_opps)} opportunities")
         except Exception as e:
-            print(f"❌ Reddit scraping failed: {e}")
+            print(f"❌ Product Hunt scraping failed: {e}")
 
-        # Indie Hackers scraping
+        # Hacker News scraping
+        try:
+            hn_scraper = HackerNewsScraper()
+            hn_opps = hn_scraper.scrape_all()
+            all_opportunities.extend(hn_opps)
+            print(f"✅ Hacker News: {len(hn_opps)} opportunities")
+        except Exception as e:
+            print(f"❌ Hacker News scraping failed: {e}")
+
+        # Indie Hackers scraping (keep as backup)
         try:
             ih_scraper = IndieHackersScraper()
             ih_opps = ih_scraper.scrape_all()
@@ -79,15 +89,6 @@ class ProductionOpportunityPipeline:
             print(f"✅ Indie Hackers: {len(ih_opps)} opportunities")
         except Exception as e:
             print(f"❌ Indie Hackers scraping failed: {e}")
-
-        # Google Dorking
-        try:
-            google_scraper = GoogleDorkingScraper()
-            google_opps = google_scraper.scrape_all()
-            all_opportunities.extend(google_opps)
-            print(f"✅ Google Dorks: {len(google_opps)} opportunities")
-        except Exception as e:
-            print(f"❌ Google dorking failed: {e}")
 
         self.stats['scraped'] = len(all_opportunities)
 
@@ -211,8 +212,8 @@ Respond ONLY with valid JSON."""
     def store_in_business_rag(self, opportunity: Dict, analysis: Dict):
         """Step 3: Store in business RAG"""
         try:
-            RAG_BUSINESS_DB.mkdir(parents=True, exist_ok=True)
-            client = chromadb.PersistentClient(path=str(RAG_BUSINESS_DB))
+            # Use Xeon Gold ChromaDB (with automatic fallback to local)
+            client = get_chroma_client()
 
             try:
                 collection = client.get_collection("business_opportunities")
@@ -285,7 +286,7 @@ Respond ONLY with valid JSON."""
     def run_full_pipeline(self):
         """Execute complete production pipeline"""
         print("\n" + "=" * 70)
-        print("🚀 PRODUCTION OPPORTUNITY RESEARCH BOT")
+        print("PRODUCTION OPPORTUNITY RESEARCH BOT")
         print("=" * 70)
         print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 

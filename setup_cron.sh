@@ -3,7 +3,7 @@
 
 set -e
 
-WORKSPACE="/mnt/d/workspace/opportunity-research-bot"
+WORKSPACE="/home/jdmal/workspace/opportunity-research-bot"
 SCRIPT="$WORKSPACE/production_opportunity_pipeline.py"
 LOG_DIR="$WORKSPACE/logs"
 CRON_TIME="0 9 * * *"  # Run daily at 9 AM
@@ -23,7 +23,7 @@ cat > "$CRON_SCRIPT" << 'EOF'
 # Daily opportunity scraping wrapper script
 
 # Set working directory
-cd /mnt/d/workspace/opportunity-research-bot
+cd /home/jdmal/workspace/opportunity-research-bot
 
 # Load environment variables
 if [ -f .env ]; then

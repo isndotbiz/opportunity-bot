@@ -1,0 +1,11 @@
+ANTHROPIC_API_KEY=op://TrueNAS Infrastructure/Anthropic API Key/credential
+OPENROUTER_API_KEY=op://TrueNAS Infrastructure/Workspace Secrets/OPENROUTER_API_KEY
+LLM_PROVIDER=claude
+LLM_MODEL=claude-sonnet-4-5-20250929
+REDDIT_CLIENT_ID=get_from_reddit
+REDDIT_CLIENT_SECRET=op://TrueNAS Infrastructure/Workspace Secrets/REDDIT_CLIENT_SECRET
+REDDIT_USER_AGENT=OpportunityBot/2.0
+NEO4J_URI=bolt://10.0.0.87:7687
+QDRANT_URL=http://10.0.0.87:6333
+REDIS_URL=redis://10.0.0.87:6379
+CHROMADB_URL=http://10.0.0.87:8000

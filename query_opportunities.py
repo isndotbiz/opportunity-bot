@@ -4,6 +4,7 @@
 import sys
 import chromadb
 from pathlib import Path
+from config_chromadb import get_chroma_client, get_chroma_settings
 
 # Configuration
 WORKSPACE = Path(__file__).parent.absolute()  # opportunity-research-bot directory
@@ -12,7 +13,8 @@ RAG_BUSINESS_DB = WORKSPACE / "data" / "chroma_db"
 def query_opportunities(query_text, n_results=5):
     """Query the business opportunities database"""
     try:
-        client = chromadb.PersistentClient(path=str(RAG_BUSINESS_DB))
+        # Use Xeon Gold ChromaDB (with automatic fallback to local)
+        client = get_chroma_client()
         collection = client.get_collection("business_opportunities")
 
         print(f"\n🔎 Searching for: '{query_text}'")

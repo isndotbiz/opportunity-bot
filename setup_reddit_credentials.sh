@@ -125,7 +125,7 @@ python3 << 'PYTHON' 2>/dev/null || {
 }
 import os
 import sys
-sys.path.insert(0, '/mnt/d/workspace/opportunity-research-bot')
+sys.path.insert(0, '/home/jdmal/workspace/opportunity-research-bot')
 
 try:
     from dotenv import load_dotenv

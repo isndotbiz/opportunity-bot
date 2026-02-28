@@ -1,0 +1,109 @@
+================================================================================
+OPPORTUNITY DATABASE TRENDS & INSIGHTS REPORT
+================================================================================
+Generated: 2026-02-08 18:00:11
+Database: D:\workspace\projects\opportunity-research-bot\data\chroma_db
+Total Opportunities: 14
+================================================================================
+
+
+TREND #1: AUTOMATION VS LEGITIMACY BALANCE
+--------------------------------------------------------------------------------
+Average Automation Score: 79.3/100
+Average Legitimacy Score: 73.2/100
+Difference: 6.1 points
+
+INSIGHT: Good balance between automation potential and legitimacy.
+ACTION: Continue current scraping strategy.
+
+High Automation (>80): 5 (35.7%)
+High Legitimacy (>85): 0 (0.0%)
+Both High: 0 (0.0%)
+
+WARNING: Very few opportunities meet both criteria.
+ACTION: Expand to more premium sources or adjust scoring thresholds.
+
+
+TREND #2: SOURCE PERFORMANCE
+--------------------------------------------------------------------------------
+Total Sources: 3
+
+Source Performance (sorted by quality):
+  Indie Hackers                 :   6 opps | Auto:  80.0 | Leg:  74.2 | Total:  154.2
+  Reddit r/Entrepreneur         :   2 opps | Auto:  80.0 | Leg:  72.5 | Total:  152.5
+  Reddit r/SideProject          :   6 opps | Auto:  78.3 | Leg:  72.5 | Total:  150.8
+
+BEST SOURCE: Indie Hackers (Quality Score: 154.2)
+ACTION: Prioritize scraping from Indie Hackers
+
+
+TREND #3: INVESTMENT PATTERNS
+--------------------------------------------------------------------------------
+Zero Investment ($0): 1 (7.1%)
+Low Investment (<$1K): 5 (35.7%)
+Mid Investment ($1K-$10K): 1 (7.1%)
+High Investment (>$10K): 0 (0.0%)
+Unknown: 8 (57.1%)
+
+WARNING: Many opportunities lack investment data.
+ACTION: Improve scraping to extract investment estimates.
+
+Accessible Opportunities (<$1K): 6 (42.9%)
+ACTION: Focus on low-barrier-to-entry opportunities for wider appeal.
+
+
+TREND #4: TIME TO MARKET ANALYSIS
+--------------------------------------------------------------------------------
+Quick Wins (<1 month): 6 (42.9%)
+Moderate (1-3 months): 0 (0.0%)
+Long-term (>3 months): 1 (7.1%)
+Unknown: 8 (57.1%)
+
+
+TREND #5: REVENUE PATTERNS
+--------------------------------------------------------------------------------
+Low Revenue (<$2K/mo): 2
+Mid Revenue ($2K-$10K/mo): 3
+High Revenue (>$10K/mo): 0
+
+Top 5 Revenue Claims:
+  $4000/month                   : 4 opportunities
+  $6000/month                   : 4 opportunities
+  $3000/month                   : 2 opportunities
+  $2000/month                   : 2 opportunities
+  $5000/month                   : 2 opportunities
+
+
+TREND #6: CATEGORY DISTRIBUTION
+--------------------------------------------------------------------------------
+  ai-automation                 : 6 (42.9%)
+
+
+GAPS & EXPANSION OPPORTUNITIES
+--------------------------------------------------------------------------------
+Identified Gaps:
+  1. FEW HIGH-QUALITY OPPORTUNITIES: Need more premium sources
+  2. MISSING INVESTMENT DATA: Improve data extraction
+  3. LIMITED SOURCE DIVERSITY: Add more data sources
+  4. HIGH BARRIERS TO ENTRY: Focus on low-investment opportunities
+  5. UNEXPLORED CATEGORIES: e-commerce, templates, ai-tools, content-creation, automation
+
+
+ACTIONABLE RECOMMENDATIONS
+--------------------------------------------------------------------------------
+  1. Increase scraping frequency from Indie Hackers (highest quality)
+  2. Target subreddits focused on bootstrapping and low-budget startups
+  3. Explore AI tool directories and marketplaces
+  4. Add new sources: Product Hunt, Hacker News Show HN, Twitter #buildinpublic
+
+
+DATABASE HEALTH
+--------------------------------------------------------------------------------
+Complete Records: 14/14 (100.0%)
+Database Size: ~70 KB
+Last Modified: Today
+STATUS: HEALTHY - High data quality
+
+================================================================================
+END OF REPORT
+================================================================================
