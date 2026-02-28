@@ -1,0 +1,12 @@
+﻿{
+  "mcpServers": {
+    "local-agents": {
+      "command": "ssh",
+      "args": ["xeon", "/mnt/pmem/workspace/agent-env/bin/python3 /mnt/pmem/workspace/local-agents/server.py"]
+    },
+    "rag-knowledge-base": {
+      "command": "ssh",
+      "args": ["xeon", "/mnt/pmem/workspace/agent-env/bin/python3 /mnt/pmem/workspace/rag-system/mcp-server/rag_mcp_server.py"]
+    }
+  }
+}
