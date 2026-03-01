@@ -1,0 +1,28 @@
+{
+  "autoCompact": true,
+  "autoCompactThreshold": 0.81,
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /home/jdmal/bin/curate-and-ingest.sh --hook-stdin auto",
+            "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "WebFetch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /home/jdmal/bin/curate-and-ingest.sh --hook-stdin web-research",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}

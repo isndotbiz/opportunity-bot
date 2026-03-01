@@ -2,8 +2,7 @@
 
 **Project:** AI-Powered Business Opportunity Discovery System
 **Status:** Production Ready — Active Development
-**Location:** `D:/workspace/projects/opportunity-research-bot/` (Windows path)
-**Git Bash path:** `/d/workspace/projects/opportunity-research-bot/`
+**Location:** Xeon: `/mnt/pmem/workspace/opportunity-research-bot/` | Windows: `D:/workspace/projects/opportunity-research-bot/`
 
 ---
 
@@ -16,6 +15,15 @@ An AI system that automatically discovers, analyzes, and stores business opportu
 - 5-10 seconds per AI analysis (RTX 3090)
 - 15-20 minutes for full pipeline
 - Semantic search <50ms for 10K docs
+
+---
+
+## MCP Policy
+- **context7**: Up-to-date library/framework docs (via compound-engineering plugin)
+- **orchestrator**: Dispatch to cheap/local LLMs (GLM, TabbyAPI, OpenRouter) — port 8787
+- **rag**: Search/ingest curated knowledge base on TrueNAS (100.67.89.29:8400)
+- **git**: Git operations via MCP
+- All MCPs are global (~/.claude/mcp.json), no per-project config needed
 
 ---
 
@@ -164,7 +172,7 @@ The project uses `config_chromadb.py` to abstract local vs. Xeon ChromaDB:
 ```python
 from config_chromadb import get_chroma_client
 
-# Automatically connects to Xeon (10.0.0.87:8000) or falls back to local
+# Automatically connects to Xeon (100.65.249.20:8000) or falls back to local
 client = get_chroma_client()
 collection = client.get_or_create_collection("business_opportunities")
 
@@ -178,13 +186,13 @@ results = collection.query(
 
 **Collection name:** `"business_opportunities"` (NOT "opportunities" — this changed)
 **Local fallback:** `data/chroma_db/` (PersistentClient)
-**Xeon server:** `http://10.0.0.87:8000` (RAM disk, 192GB, 10-100x faster)
+**Xeon server:** `http://100.65.249.20:8000` (RAM disk, 192GB, 10-100x faster)
 **Size:** ~1MB per 100 opportunities
 
 **Environment control:**
 ```
 USE_XEON_CHROMADB=true   # default — tries Xeon first
-XEON_CHROMADB_HOST=10.0.0.87
+XEON_CHROMADB_HOST=100.65.249.20
 XEON_CHROMADB_PORT=8000
 ```
 
@@ -242,21 +250,21 @@ python personalized_opportunity_bot.py
 
 **Location:** `D:/workspace/projects/opportunity-research-bot/` (Git Bash: `/d/workspace/projects/opportunity-research-bot/`)
 **LLM Server:** Claude API (`LLM_PROVIDER=claude`) OR Local Qwen 30B Docker (`llama-cpp-docker/`)
-**Database:** Xeon Gold ChromaDB (10.0.0.87:8000) with local fallback (`data/chroma_db/`)
+**Database:** Xeon Gold ChromaDB (100.65.249.20:8000) with local fallback (`data/chroma_db/`)
 **GPU:** RTX 3090 24GB (local workstation, for Qwen 30B)
 
 ### Future: Production on Xeon Gold
 
 **Planned Architecture:**
 ```
-Xeon Gold (10.0.0.87)
+Xeon Gold (100.65.249.20)
 ├── Scrapers (72-core CPU for parallel scraping)
 ├── ChromaDB (RAM disk, 192GB tmpfs)
 ├── Redis (caching, session management)
 ├── Neo4j (relationship graphs)
 └── Qdrant (backup vector search)
 
-GPU Inference (TrueNAS 10.0.0.89 or Local)
+GPU Inference (TrueNAS 100.67.89.29 or Local)
 └── Qwen 30B embeddings (RTX 4060Ti 16GB or RTX 3090 24GB)
 
 Automation
@@ -496,7 +504,7 @@ export CUDA_VISIBLE_DEVICES=""
 
 **Infrastructure:**
 - `/d/workspace/llama-cpp-docker/` - Local Qwen 30B LLM Docker container
-- `10.0.0.87` - Xeon Gold server (ChromaDB:8000, Neo4j:7687, Qdrant:6333, Redis:6379)
+- `100.65.249.20` - Xeon Gold server (ChromaDB:8000, Neo4j:7687, Qdrant:6333, Redis:6379)
 
 **Credit Integration:**
 - `CREDIT_ASSESSMENT_2026-02-04.md` - Personal FICO 763-788, SBSS 210/300
