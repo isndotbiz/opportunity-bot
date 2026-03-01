@@ -50,7 +50,8 @@ Thumbs.db
 
 # Local tool config (machine-specific)
 .mcp.json
- 
+compound-engineering.local.md
+
 # ChromaDB binary data 
 data/chroma_db/ 
 data/test_chroma/ 
